@@ -1,22 +1,25 @@
-use std::{io, ops::Index};
+use core::f64;
+use std::{
+    io::{self, Read},
+    result,
+};
 
 fn main() {
-    let a = [1, 2, 3, 4, 5, 76];
-
-    println!("Please Enter the index of array you want to access");
-
-    let mut index = String::new();
+    let mut temprature_in_farenheit = String::new();
 
     io::stdin()
-        .read_line(&mut index)
-        .expect("Failed to read input");
+        .read_line(&mut temprature_in_farenheit)
+        .expect("Failed to read user input");
 
-    let index: usize = index
+    let temprature_in_farenheit: f64 = temprature_in_farenheit
         .trim()
-        .parse()
-        .expect("Index entered was not a number");
+        .parse::<f64>()
+        .expect("Failed to parse as 64 bit float");
 
-    let element = a[index];
+    println!("{}", convert_to_celcius(temprature_in_farenheit));
+}
 
-    println!("The value of the elemnt at {index} is {element}");
+fn convert_to_celcius(farenheit: f64) -> f64 {
+    let celcius: f64 = (farenheit / 1.8) - 32.0;
+    celcius
 }
