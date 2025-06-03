@@ -1,22 +1,25 @@
-use std::{io, ops::Index};
-
 fn main() {
-    let a = [1, 2, 3, 4, 5, 76];
+    let a = [
+        "12 drummers drumming",
+        "Eleven pipers piping",
+        "Ten lords a-leaping",
+        "Nine ladies dancing",
+        "Eight maids a-milking",
+        "Seven swans a-swimming",
+        "Six geese a-laying",
+        "Five golden rings (five golden rings)",
+        "Four calling birds",
+        "Three French hens",
+        "Two turtle-doves",
+        "And a partridge in a pear tree",
+    ];
 
-    println!("Please Enter the index of array you want to access");
-
-    let mut index = String::new();
-
-    io::stdin()
-        .read_line(&mut index)
-        .expect("Failed to read input");
-
-    let index: usize = index
-        .trim()
-        .parse()
-        .expect("Index entered was not a number");
-
-    let element = a[index];
-
-    println!("The value of the elemnt at {index} is {element}");
+    for day in 1..=12 {
+        println!("Day {}:", day);
+        for i in (12 - day)..12 {
+            println!("{}", a[i]);
+        }
+        println!();
+    }
 }
+
